@@ -1,6 +1,6 @@
 ### Hi there! 👋 I'm Hardik
 
-[cite_start]I am a **Master's student in Aerospace Engineering** at **Technische Universität Darmstadt**, Germany[cite: 16, 17]. [cite_start]My passion lies at the intersection of aviation and software, specifically focusing on **Machine Learning**, **Cockpit UI/UX**, and **Human-Machine Interaction (HMI)**[cite: 2, 21].
+I am a **Master's student in Aerospace Engineering** at **Technische Universität Darmstadt**, Germany. My passion lies at the intersection of aviation and software, specifically focusing on **Machine Learning**, **Cockpit UI/UX**, and **Human-Machine Interaction (HMI)**.
 
 I bridge the gap between mechanical systems and digital interfaces, creating intuitive solutions for complex aerospace problems.
 
@@ -8,19 +8,19 @@ I bridge the gap between mechanical systems and digital interfaces, creating int
 
 ### 🔭 What I'm Working On
 
-* **Flight Simulator Interface (UDP & PySide6):**
-    * [cite_start]Designed and implemented a complete UI/UX interface for single-pilot simulator displays[cite: 18, 20].
-    * Established real-time connectivity with the simulator (X-Plane) using **UDP protocols** for seamless data transmission.
-    * [cite_start]Focused on pilot-centric design patterns to reduce cognitive load[cite: 21].
+* **Predictive Maintenance with ML (NASA Dataset)**
+  * Developed a Machine Learning model to predict the **Remaining Useful Life (RUL)** of gas turbine engines.
+  * Utilized the **NASA C-MAPSS dataset** for training and validation.
+  * Implemented deep learning architectures using **TensorFlow** and **Keras Tuner** for hyperparameter optimization.
 
-* **Predictive Maintenance with ML (NASA Dataset):**
-    * Developed a Machine Learning model to predict the **Remaining Useful Life (RUL)** of gas turbine engines.
-    * Utilized the **NASA C-MAPSS dataset** for training and validation.
-    * Implemented deep learning architectures using **TensorFlow** and **Keras Tuner** for hyperparameter optimization.
+* **Flight Simulator Interface (UDP & PySide6)**
+  * Designed and implemented a complete UI/UX interface for single-pilot simulator displays.
+  * Established real-time connectivity with the simulator (X-Plane) using **UDP protocols** for seamless data transmission.
+  * Focused on pilot-centric design patterns to reduce cognitive load.
 
-* **Aviation Safety Analysis (Boeing Project):**
-    * [cite_start]Conducted Runway Incursion Analysis and Safety Evaluation aligned with **RTCA DO-323** standards[cite: 22, 24].
-    * [cite_start]Performed sensitivity analysis to improve collision avoidance logic in cockpit environments[cite: 24].
+* **Aviation Safety Analysis (Boeing Project)**
+  * Conducted Runway Incursion Analysis and Safety Evaluation aligned with **RTCA DO-323** standards.
+  * Performed sensitivity analysis to improve collision avoidance logic in cockpit environments.
 
 ---
 
@@ -39,9 +39,9 @@ I bridge the gap between mechanical systems and digital interfaces, creating int
 
 ### 📫 Connect with Me
 
-* [cite_start]**Location:** Darmstadt, Germany [cite: 4]
-* [cite_start]**Languages:** English (Fluent), German (B1/B2) [cite: 50, 52]
-* **LinkedIn:** [(https://www.linkedin.com/in/thehardikmadaan/)]
-* **Email:** [hardik.madaan5@gmail.com]
+* 📍 **Location:** Darmstadt, Germany
+* 🗣️ **Languages:** English (Fluent), German (B1/B2)
+* 💼 **LinkedIn:** [thehardikmadaan](https://www.linkedin.com/in/thehardikmadaan/)
+* 📧 **Email:** [hardik.madaan5@gmail.com](mailto:hardik.madaan5@gmail.com)
 
-I am currently open to **Master's Thesis opportunities**, **projects**, and **student jobs** in the field of Aerospace Engineering,ML, HMI, and Data Science.
+I am currently open to **Master's Thesis opportunities**, **projects**, and **student jobs** in the field of Aerospace Engineering, ML, HMI, and Data Science.
