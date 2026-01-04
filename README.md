@@ -6,21 +6,25 @@ I bridge the gap between mechanical systems and digital interfaces, creating int
 
 ---
 
-### 🔭 What I'm Working On
+### 🔭 Currently Working On
 
 * **Predictive Maintenance with ML (NASA Dataset)**
-  * Developed a Machine Learning model to predict the **Remaining Useful Life (RUL)** of gas turbine engines.
-  * Utilized the **NASA C-MAPSS dataset** for training and validation.
-  * Implemented deep learning architectures using **TensorFlow** and **Keras Tuner** for hyperparameter optimization.
+  * Developing a Machine Learning model to predict the **Remaining Useful Life (RUL)** of gas turbine engines.
+  * Utilizing the **NASA C-MAPSS dataset** for training and validation.
+  * Implementing deep learning architectures using **TensorFlow** and **Keras Tuner** for hyperparameter optimization to achieve high predictive accuracy.
+
+---
+
+### 🚀 Completed Projects
 
 * **Flight Simulator Interface (UDP & PySide6)**
   * Designed and implemented a complete UI/UX interface for single-pilot simulator displays.
   * Established real-time connectivity with the simulator (X-Plane) using **UDP protocols** for seamless data transmission.
-  * Focused on pilot-centric design patterns to reduce cognitive load.
+  * Focused on pilot-centric design patterns to reduce cognitive load during flight operations.
 
 * **Aviation Safety Analysis (Boeing Project)**
   * Conducted Runway Incursion Analysis and Safety Evaluation aligned with **RTCA DO-323** standards.
-  * Performed sensitivity analysis to improve collision avoidance logic in cockpit environments.
+  * Performed sensitivity analysis on historical data to improve collision avoidance logic in cockpit environments.
 
 ---
 
