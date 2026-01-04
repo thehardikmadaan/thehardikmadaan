@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="cover_poster.png" width="100%" alt="Aerospace and ML Banner" />
+  <img src="header.png" width="100%" alt="Aerospace and ML Banner" />
 </div>
 <br/>
 
