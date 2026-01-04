@@ -1,16 +1,47 @@
-## Hi there 👋
+### Hi there! 👋 I'm Hardik
 
-<!--
-**thehardikmadaan/thehardikmadaan** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+[cite_start]I am a **Master's student in Aerospace Engineering** at **Technische Universität Darmstadt**, Germany[cite: 16, 17]. [cite_start]My passion lies at the intersection of aviation and software, specifically focusing on **Machine Learning**, **Cockpit UI/UX**, and **Human-Machine Interaction (HMI)**[cite: 2, 21].
 
-Here are some ideas to get you started:
+I bridge the gap between mechanical systems and digital interfaces, creating intuitive solutions for complex aerospace problems.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+---
+
+### 🔭 What I'm Working On
+
+* **Flight Simulator Interface (UDP & PySide6):**
+    * [cite_start]Designed and implemented a complete UI/UX interface for single-pilot simulator displays[cite: 18, 20].
+    * Established real-time connectivity with the simulator (X-Plane) using **UDP protocols** for seamless data transmission.
+    * [cite_start]Focused on pilot-centric design patterns to reduce cognitive load[cite: 21].
+
+* **Predictive Maintenance with ML (NASA Dataset):**
+    * Developed a Machine Learning model to predict the **Remaining Useful Life (RUL)** of gas turbine engines.
+    * Utilized the **NASA C-MAPSS dataset** for training and validation.
+    * Implemented deep learning architectures using **TensorFlow** and **Keras Tuner** for hyperparameter optimization.
+
+* **Aviation Safety Analysis (Boeing Project):**
+    * [cite_start]Conducted Runway Incursion Analysis and Safety Evaluation aligned with **RTCA DO-323** standards[cite: 22, 24].
+    * [cite_start]Performed sensitivity analysis to improve collision avoidance logic in cockpit environments[cite: 24].
+
+---
+
+### 🛠️ Technical Skills
+
+#### 🧠 Machine Learning & Data Science
+![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white) ![Keras](https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white) ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black)
+
+#### ✈️ Aviation UI/UX & Simulation
+![PySide6](https://img.shields.io/badge/PySide6-41CD52?style=for-the-badge&logo=qt&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![UDP](https://img.shields.io/badge/X--Plane_UDP-1E90FF?style=for-the-badge&logo=airplane&logoColor=white) ![MATLAB](https://img.shields.io/badge/MATLAB-ED8B00?style=for-the-badge&logo=mathworks&logoColor=white) ![Simulink](https://img.shields.io/badge/Simulink-00599C?style=for-the-badge&logo=mathworks&logoColor=white)
+
+#### ⚙️ Engineering & Tools
+![Fusion 360](https://img.shields.io/badge/Fusion%20360-F5A623?style=for-the-badge&logo=autodesk&logoColor=white) ![ANSYS](https://img.shields.io/badge/Ansys-FFB71B?style=for-the-badge&logo=ansys&logoColor=black) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![SCRUM](https://img.shields.io/badge/Agile_SCRUM-0096D6?style=for-the-badge&logo=scrum&logoColor=white)
+
+---
+
+### 📫 Connect with Me
+
+* [cite_start]**Location:** Darmstadt, Germany [cite: 4]
+* [cite_start]**Languages:** English (Fluent), German (B1/B2) [cite: 50, 52]
+* **LinkedIn:** [(https://www.linkedin.com/in/thehardikmadaan/)]
+* **Email:** [hardik.madaan5@gmail.com]
+
+I am currently open to **Master's Thesis opportunities**, **projects**, and **student jobs** in the field of Aerospace Engineering,ML, HMI, and Data Science.
