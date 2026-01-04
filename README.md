@@ -1,3 +1,8 @@
+<div align="center">
+  <img src="header.png" width="100%" alt="Aerospace and ML Banner" />
+</div>
+<br/>
+
 ### Hi there! 👋 I'm Hardik
 
 I am a **Master's student in Aerospace Engineering** at **Technische Universität Darmstadt**, Germany. My passion lies at the intersection of aviation and software, specifically focusing on **Machine Learning**, **Cockpit UI/UX**, and **Human-Machine Interaction (HMI)**.
