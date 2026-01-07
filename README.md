@@ -13,7 +13,7 @@ I bridge the gap between mechanical systems and digital interfaces, creating int
 
 ### 🔭 Currently Working On
 
-* **Predictive Maintenance with ML (NASA Dataset)**
+* **Predictive Maintenance with ML (Based on NASA C-MAPSS)**
   * Developing a Machine Learning model to predict the **Remaining Useful Life (RUL)** of gas turbine engines.
   * Utilizing the **NASA C-MAPSS dataset** for training and validation.
   * Implementing deep learning architectures using **TensorFlow** and **Keras Tuner** for hyperparameter optimization to achieve high predictive accuracy.
