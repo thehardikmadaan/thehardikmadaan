@@ -53,4 +53,4 @@ I bridge the gap between mechanical systems and digital interfaces, creating int
 * 💼 **LinkedIn:** [thehardikmadaan](https://www.linkedin.com/in/thehardikmadaan/)
 * 📧 **Email:** [hardik.madaan5@gmail.com](mailto:hardik.madaan5@gmail.com)
 
-I am currently open to **Master's Thesis opportunities**, **projects**, and **student jobs** in the field of Aerospace Engineering, ML, HMI, and Data Science.
+I am currently open to **Master's Thesis opportunities**, **projects**, and **student jobs** in the field of Aerospace Engineering, ML, and Data Science.
