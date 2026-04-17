@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hardik Madaan — Aerospace & AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#020408;--surface:#060c14;--card:#0a111c;
+  --accent:#00d4ff;--accent2:#7b61ff;--accent3:#ff6b35;
+  --text:#e8edf5;--muted:#4a5a70;--border:rgba(0,212,255,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+
+#cur{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .25s,height .25s,background .25s}
+#cur-r{position:fixed;width:36px;height:36px;border:1px solid rgba(0,212,255,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s}
+
+.bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:60px 60px;will-change:transform}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;will-change:transform}
+.o1{width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.07),transparent 70%);top:-150px;left:-150px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,rgba(123,97,255,.07),transparent 70%);top:40%;right:-100px}
+.o3{width:400px;height:400px;background:radial-gradient(circle,rgba(255,107,53,.05),transparent 70%);bottom:5%;left:15%}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.4rem 4rem;background:rgba(2,4,8,.75);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transform:translateY(-100%);animation:navIn .7s .1s ease forwards}
+@keyframes navIn{to{transform:translateY(0)}}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));z-index:300;width:0%;transition:width .1s linear}
+
+main{position:relative;z-index:2}
+section{min-height:100vh;display:flex;align-items:center}
+
+#hero{padding:0 4rem;flex-direction:column;justify-content:center;overflow:hidden;position:relative}
+.h-eye{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;animation:fadeUp .7s .4s ease forwards}
+.h-eye::before{content:'';width:36px;height:1px;background:var(--accent)}
+.h-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3.5rem,11vw,9.5rem);line-height:.9;letter-spacing:-.03em;opacity:0;animation:fadeUp .7s .55s ease forwards}
+.h-name .l1{display:block;color:var(--text)}
+.h-name .l2{display:block;background:linear-gradient(135deg,var(--accent),var(--accent2) 50%,var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h-sub{margin-top:1.8rem;font-size:1rem;color:var(--muted);max-width:500px;line-height:1.8;opacity:0;animation:fadeUp .7s .7s ease forwards}
+.h-ctas{margin-top:2.5rem;display:flex;gap:1.2rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .85s ease forwards}
+.btn-p{padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.05em;border:none;border-radius:3px;cursor:none;text-decoration:none;display:inline-block;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(0,212,255,.3)}
+.btn-o{padding:.85rem 2.2rem;background:transparent;color:var(--text);font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.05em;border:1px solid var(--border);border-radius:3px;cursor:none;text-decoration:none;display:inline-block;transition:border-color .3s,color .3s,transform .3s}
+.btn-o:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.h-chips{position:absolute;right:4rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.7rem;opacity:0;animation:chipIn .7s 1.1s ease forwards}
+@keyframes chipIn{from{opacity:0;transform:translate(20px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+.chip{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);padding:.45rem .9rem;border:1px solid var(--border);border-radius:2px;transition:all .3s;white-space:nowrap}
+.chip:hover{border-color:var(--accent);color:var(--accent);transform:translateX(-4px)}
+.scroll-hint{position:absolute;bottom:2.5rem;left:4rem;display:flex;align-items:center;gap:.8rem;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);opacity:0;animation:fadeUp .7s 1.3s ease forwards}
+.scroll-line{width:1px;height:45px;background:linear-gradient(var(--accent),transparent);animation:scrollBlink 2s ease-in-out infinite}
+@keyframes scrollBlink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1rem 0;background:var(--surface);position:relative;z-index:2}
+.marquee-track{display:flex;width:max-content;animation:marquee 22s linear infinite}
+.marquee-item{font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;color:var(--muted);padding:0 2.5rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;display:flex;align-items:center;gap:2.5rem}
+.marquee-item::after{content:'✦';color:var(--accent);font-size:.55rem}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.s-inner{width:100%;max-width:1200px;margin:0 auto;padding:7rem 4rem}
+.s-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem}
+.s-label::before{content:attr(data-n);color:var(--muted)}
+.s-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.2rem,4.5vw,4rem);line-height:1;letter-spacing:-.02em;margin-bottom:3.5rem}
+
+.rv{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+.rv-l{opacity:0;transform:translateX(-36px);transition:opacity .75s ease,transform .75s ease}
+.rv-l.in{opacity:1;transform:translateX(0)}
+.rv-r{opacity:0;transform:translateX(36px);transition:opacity .75s ease,transform .75s ease}
+.rv-r.in{opacity:1;transform:translateX(0)}
+
+#about{min-height:auto;background:var(--surface);position:relative;overflow:hidden}
+#about::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-text p{font-size:1rem;color:rgba(232,237,245,.7);line-height:1.85;margin-bottom:1.4rem}
+.about-text p strong{color:var(--accent);font-weight:500}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.sc{padding:1.5rem;border:1px solid var(--border);border-radius:3px;background:rgba(0,212,255,.02);transition:border-color .35s,transform .35s,background .35s;position:relative;overflow:hidden}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.sc:hover{border-color:var(--accent);transform:translateY(-5px);background:rgba(0,212,255,.04)}
+.sc:hover::before{transform:scaleX(1)}
+.sc-n{font-family:'Syne',sans-serif;font-weight:800;font-size:2.2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.sc-l{font-size:.72rem;color:var(--muted);margin-top:.4rem;font-family:'DM Mono',monospace;letter-spacing:.04em}
+
+#skills{min-height:auto}
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.sk-cat{padding:1.8rem;border:1px solid var(--border);border-radius:3px;background:var(--card);transition:transform .35s,border-color .35s}
+.sk-cat:hover{transform:translateY(-5px);border-color:var(--accent2)}
+.sk-cat-t{font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;color:var(--accent2);letter-spacing:.07em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.sk-pills{display:flex;flex-wrap:wrap;gap:.45rem}
+.sp{font-family:'DM Mono',monospace;font-size:.65rem;padding:.28rem .7rem;border-radius:2px;background:rgba(123,97,255,.07);border:1px solid rgba(123,97,255,.18);color:rgba(232,237,245,.65);transition:all .25s}
+.sp:hover{background:rgba(123,97,255,.15);border-color:var(--accent2);color:var(--text)}
+
+/* PROJECT SHOWCASE */
+#projects{min-height:auto;background:var(--surface)}
+.proj-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:2.5rem;width:fit-content}
+.p-tab{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.7rem 1.4rem;background:transparent;border:none;color:var(--muted);cursor:none;transition:all .25s;position:relative}
+.p-tab.active{background:rgba(0,212,255,.08);color:var(--accent)}
+.p-tab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .3s}
+.p-tab.active::after{transform:scaleX(1)}
+
+.proj-showcase{border:1px solid var(--border);border-radius:4px;overflow:hidden;min-height:520px}
+.proj-panel{display:none;animation:panelIn .4s ease forwards}
+.proj-panel.active{display:grid;grid-template-columns:1fr 1fr}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.proj-info{padding:2.5rem;border-right:1px solid var(--border);background:var(--card);display:flex;flex-direction:column}
+.proj-num-big{font-family:'Syne',sans-serif;font-weight:800;font-size:4rem;color:rgba(0,212,255,.07);line-height:1;margin-bottom:-.5rem}
+.proj-title-big{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;line-height:1.15;margin-bottom:.5rem;color:var(--text)}
+.proj-org-badge{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent3);letter-spacing:.07em;margin-bottom:1.2rem}
+.proj-desc-full{font-size:.92rem;color:rgba(232,237,245,.65);line-height:1.8;flex:1}
+.proj-metrics{margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+.metric-row{display:flex;align-items:center;gap:.8rem;font-family:'DM Mono',monospace;font-size:.68rem}
+.metric-bar-wrap{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.metric-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1s ease}
+.metric-label{color:var(--muted);min-width:90px}
+.metric-val{color:var(--accent);min-width:42px;text-align:right}
+.proj-tags-row{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.pt{font-family:'DM Mono',monospace;font-size:.6rem;padding:.22rem .6rem;border-radius:2px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.14);color:var(--accent)}
+
+.proj-code-side{display:flex;flex-direction:column;background:#050b12;position:relative}
+.code-topbar{padding:.7rem 1.2rem;background:#070e18;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.8rem}
+.code-dots{display:flex;gap:.45rem}
+.code-dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#ff5f56}.dot-y{background:#ffbd2e}.dot-g{background:#27c93f}
+.code-fname{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-left:.5rem}
+.code-body{flex:1;overflow-y:auto;padding:1.2rem 1.5rem;scrollbar-width:thin;scrollbar-color:rgba(0,212,255,.15) transparent}
+.code-body::-webkit-scrollbar{width:4px}
+.code-body::-webkit-scrollbar-thumb{background:rgba(0,212,255,.15);border-radius:2px}
+pre{font-family:'DM Mono',monospace;font-size:.68rem;line-height:1.8;color:#8892a4;white-space:pre}
+.ck{color:#7b61ff}.cs{color:#e06c75}.cn{color:#d19a66}.cc{color:#5a6a80;font-style:italic}.cf{color:#61afef}.cv{color:#e5c07b}.co{color:#00d4ff}
+.code-footer{padding:.7rem 1.2rem;background:#070e18;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.code-footer-l{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted)}
+.code-run{font-family:'DM Mono',monospace;font-size:.65rem;padding:.35rem .9rem;border:1px solid rgba(0,212,255,.25);border-radius:2px;background:transparent;color:var(--accent);cursor:none;transition:all .25s;display:flex;align-items:center;gap:.5rem}
+.code-run:hover{background:rgba(0,212,255,.08);border-color:var(--accent)}
+
+.term-overlay{position:absolute;inset:0;background:#020810;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);z-index:10}
+.term-overlay.open{transform:translateY(0)}
+.term-bar{padding:.7rem 1.2rem;background:#070e18;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.term-title{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);display:flex;align-items:center;gap:.5rem}
+.term-title::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.term-close{background:none;border:none;color:var(--muted);cursor:none;font-size:1.1rem;transition:color .2s}
+.term-close:hover{color:var(--text)}
+.term-out{flex:1;padding:1.2rem 1.5rem;overflow-y:auto;font-family:'DM Mono',monospace;font-size:.68rem;line-height:1.9;color:#8892a4}
+.tline{display:block;opacity:0;transform:translateX(-8px);transition:opacity .3s,transform .3s}
+.tline.show{opacity:1;transform:translateX(0)}
+.t-ok{color:#27c93f}.t-val{color:var(--accent)}.t-warn{color:#ffbd2e}.t-head{color:var(--accent2)}
+
+#education{min-height:auto}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.edu-card{padding:2.2rem;border:1px solid var(--border);border-radius:3px;position:relative;overflow:hidden;transition:border-color .35s,transform .35s;background:var(--card)}
+.edu-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.03),transparent);opacity:0;transition:opacity .35s}
+.edu-card:hover{border-color:var(--accent);transform:translateY(-5px)}
+.edu-card:hover::before{opacity:1}
+.edu-badge{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;padding:.28rem .7rem;border:1px solid rgba(0,212,255,.2);display:inline-block;border-radius:2px;margin-bottom:1rem}
+.edu-deg{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;margin-bottom:.4rem;line-height:1.2}
+.edu-school{color:var(--muted);font-size:.88rem;margin-bottom:.25rem}
+.edu-period{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent2);margin-bottom:1rem}
+.edu-focus{font-size:.88rem;color:rgba(232,237,245,.55);line-height:1.75}
+
+#contact{min-height:auto;background:var(--surface)}
+.contact-c{text-align:center;max-width:660px;margin:0 auto}
+.contact-c .s-label{justify-content:center}
+.contact-c .s-title{text-align:center}
+.c-desc{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem}
+.c-links{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.c-link{display:flex;align-items:center;gap:.7rem;padding:.9rem 1.8rem;border:1px solid var(--border);border-radius:3px;text-decoration:none;color:var(--text);font-family:'DM Mono',monospace;font-size:.72rem;transition:all .3s}
+.c-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-4px)}
+.c-link svg{width:16px;height:16px;flex-shrink:0}
+
+footer{padding:1.8rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.ft{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted)}
+.fa{color:var(--accent)}
+
+@keyframes glitch{0%,91%,100%{clip-path:none;transform:none}92%{clip-path:polygon(0 10%,100% 10%,100% 28%,0 28%);transform:translate(-3px,0)}94%{clip-path:polygon(0 58%,100% 58%,100% 76%,0 76%);transform:translate(3px,0)}96%{clip-path:none;transform:none}}
+.h-name .l1{animation:glitch 7s infinite}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}.nav-links{display:none}
+  #hero{padding:0 1.5rem}.h-chips{display:none}
+  .s-inner{padding:4rem 1.5rem}
+  .about-grid,.edu-grid{grid-template-columns:1fr;gap:2rem}
+  .sk-grid{grid-template-columns:1fr 1fr}
+  .proj-panel.active{grid-template-columns:1fr}
+  .proj-code-side{min-height:340px}
+  footer{flex-direction:column;gap:.8rem;text-align:center}
+  .scroll-hint{display:none}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-r"></div><div id="prog"></div>
+<div class="bg-grid" id="bgGrid"></div>
+<div class="orb o1" id="o1"></div><div class="orb o2" id="o2"></div><div class="orb o3" id="o3"></div>
+
+<nav>
+  <div class="nav-logo">HM</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div style="position:relative;z-index:2;width:100%">
+    <div class="h-eye">Aerospace &amp; AI Engineer · Darmstadt, Germany</div>
+    <h1 class="h-name"><span class="l1">Hardik</span><span class="l2">Madaan</span></h1>
+    <p class="h-sub">M.Sc. Aerospace Engineering at TU Darmstadt. Building safety-critical AI systems, ML pipelines &amp; intelligent flight interfaces where aerospace meets machine intelligence.</p>
+    <div class="h-ctas"><a href="#projects" class="btn-p">View Projects</a><a href="#contact" class="btn-o">Get in Touch</a></div>
+  </div>
+  <div class="h-chips">
+    <span class="chip">Python · Advanced</span><span class="chip">TensorFlow / Keras</span>
+    <span class="chip">MLflow · DVC</span><span class="chip">PySide6 · Qt</span>
+    <span class="chip">ANSYS CFD</span><span class="chip">X-Plane SDK</span><span class="chip">RTCA DO-323</span>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll to explore</div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Machine Learning</span><span class="marquee-item">Aerospace Engineering</span>
+    <span class="marquee-item">HMI Design</span><span class="marquee-item">Safety-Critical AI</span>
+    <span class="marquee-item">MLOps · DVC · MLflow</span><span class="marquee-item">Flight Systems</span>
+    <span class="marquee-item">Deep Learning</span><span class="marquee-item">LSTM · Prognostics</span>
+    <span class="marquee-item">Machine Learning</span><span class="marquee-item">Aerospace Engineering</span>
+    <span class="marquee-item">HMI Design</span><span class="marquee-item">Safety-Critical AI</span>
+    <span class="marquee-item">MLOps · DVC · MLflow</span><span class="marquee-item">Flight Systems</span>
+    <span class="marquee-item">Deep Learning</span><span class="marquee-item">LSTM · Prognostics</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="s-inner">
+    <div class="s-label rv" data-n="01">About Me</div>
+    <div class="about-grid">
+      <div class="rv-l">
+        <h2 class="s-title" style="margin-bottom:1.8rem">Building at the<br/><span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">edge of aerospace<br/>&amp; intelligence.</span></h2>
+        <div class="about-text">
+          <p>I'm a Master's student in Aerospace Engineering at <strong>TU Darmstadt</strong>, specialising in machine learning pipelines, safety-critical AI, and human-machine interaction for aviation.</p>
+          <p>From predicting gas turbine health with custom asymmetric loss functions to building real-time simulator cockpit GUIs — I bring both rigorous engineering and clean software practices to every project.</p>
+          <p>Currently seeking roles in <strong>aerospace AI</strong>, MLOps, and safety-critical systems where precision isn't optional.</p>
+        </div>
+      </div>
+      <div class="rv-r">
+        <div class="stats-grid">
+          <div class="sc"><div class="sc-n">99%</div><div class="sc-l">Safety violation reduction</div></div>
+          <div class="sc"><div class="sc-n">1.3</div><div class="sc-l">Grade — HMI Simulator</div></div>
+          <div class="sc"><div class="sc-n">30yr</div><div class="sc-l">Aviation data analysed</div></div>
+          <div class="sc"><div class="sc-n">4+</div><div class="sc-l">Major projects delivered</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="s-inner">
+    <div class="s-label rv" data-n="02">Technical Skills</div>
+    <h2 class="s-title rv d1">The full stack.</h2>
+    <div class="sk-grid">
+      <div class="sk-cat rv d1"><div class="sk-cat-t">⚡ Languages</div><div class="sk-pills"><span class="sp">Python</span><span class="sp">C++</span><span class="sp">C</span><span class="sp">MATLAB</span></div></div>
+      <div class="sk-cat rv d2"><div class="sk-cat-t">🧠 Machine Learning</div><div class="sk-pills"><span class="sp">TensorFlow</span><span class="sp">Keras</span><span class="sp">Scikit-Learn</span><span class="sp">LSTM</span><span class="sp">Random Forest</span><span class="sp">K-Means</span><span class="sp">SVM</span></div></div>
+      <div class="sk-cat rv d3"><div class="sk-cat-t">🔧 Dev &amp; MLOps</div><div class="sk-pills"><span class="sp">Git/GitHub</span><span class="sp">MLflow</span><span class="sp">DVC</span><span class="sp">PyTest</span><span class="sp">PySide6</span><span class="sp">UDP</span></div></div>
+      <div class="sk-cat rv d1"><div class="sk-cat-t">✈️ Aerospace</div><div class="sk-pills"><span class="sp">Simulink</span><span class="sp">X-Plane SDK</span><span class="sp">ANSYS CFD</span><span class="sp">RTCA DO-323</span><span class="sp">HMI Design</span></div></div>
+      <div class="sk-cat rv d2"><div class="sk-cat-t">🎨 CAD &amp; Design</div><div class="sk-pills"><span class="sp">CATIA V5</span><span class="sp">Fusion 360</span><span class="sp">Blender</span></div></div>
+      <div class="sk-cat rv d3"><div class="sk-cat-t">🌐 Languages</div><div class="sk-pills"><span class="sp">English — Fluent</span><span class="sp">Deutsch — B1/B2</span><span class="sp">Hindi — Native</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="s-inner">
+    <div class="s-label rv" data-n="03">Project Showcase</div>
+    <h2 class="s-title rv d1">Interactive<br/>code &amp; results.</h2>
+    <div class="proj-tabs rv d2" id="projTabs">
+      <button class="p-tab active" data-proj="0">PHM System</button>
+      <button class="p-tab" data-proj="1">Simulator GUI</button>
+      <button class="p-tab" data-proj="2">Runway Safety</button>
+      <button class="p-tab" data-proj="3">Mower Control</button>
+    </div>
+    <div class="proj-showcase rv d3">
+
+      <!-- PANEL 0 -->
+      <div class="proj-panel active" id="panel-0">
+        <div class="proj-info">
+          <div class="proj-num-big">01</div>
+          <div class="proj-title-big">Prognostics &amp; Health Management System</div>
+          <div class="proj-org-badge">Personal Project · Oct – Dec 2025</div>
+          <p class="proj-desc-full">End-to-end ML pipeline predicting engine Remaining Useful Life (RUL) on the NASA C-MAPSS dataset. Custom Asymmetric Loss Function reduces safety violations from 12.4% to 1.09%. LSTM outperforms Random Forest baseline (RMSE 17.17 → 13.32 cycles).</p>
+          <div class="proj-metrics">
+            <div class="metric-row"><span class="metric-label">RMSE reduction</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="78"></div></div><span class="metric-val">78%</span></div>
+            <div class="metric-row"><span class="metric-label">Safety violations</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="91"></div></div><span class="metric-val">↓91%</span></div>
+            <div class="metric-row"><span class="metric-label">Model accuracy</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="87"></div></div><span class="metric-val">87%</span></div>
+          </div>
+          <div class="proj-tags-row"><span class="pt">LSTM</span><span class="pt">Python</span><span class="pt">MLflow</span><span class="pt">DVC</span><span class="pt">K-Means</span><span class="pt">NASA CMAPSS</span></div>
+        </div>
+        <div class="proj-code-side">
+          <div class="code-topbar"><div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div><span class="code-fname">phm_rul_predictor.py</span></div>
+          <div class="code-body"><pre><span class="cc"># PHM System — RUL Prediction Pipeline</span>
+<span class="cc"># NASA C-MAPSS Dataset · Hardik Madaan</span>
+
+<span class="ck">import</span> <span class="cv">numpy</span> <span class="ck">as</span> <span class="cv">np</span>
+<span class="ck">import</span> <span class="cv">tensorflow</span> <span class="ck">as</span> <span class="cv">tf</span>
+<span class="ck">from</span> <span class="cv">sklearn.cluster</span> <span class="ck">import</span> <span class="cv">KMeans</span>
+<span class="ck">import</span> <span class="cv">mlflow</span>
+
+<span class="cc"># ── Asymmetric Loss Function ──────────────</span>
+<span class="ck">def</span> <span class="cf">asymmetric_loss</span>(<span class="cv">y_true</span>, <span class="cv">y_pred</span>):
+    <span class="cv">diff</span> = <span class="cv">y_pred</span> - <span class="cv">y_true</span>
+    <span class="cc"># Penalise late predictions harder</span>
+    <span class="cv">alpha</span> = <span class="cv">tf</span>.where(<span class="cv">diff</span> &lt; <span class="cn">0</span>, <span class="cn">2.0</span>, <span class="cn">0.5</span>)
+    <span class="ck">return</span> <span class="cv">tf</span>.reduce_mean(<span class="cv">alpha</span> * <span class="cv">tf</span>.square(<span class="cv">diff</span>))
+
+<span class="cc"># ── Feature Engineering via K-Means ──────</span>
+<span class="ck">def</span> <span class="cf">extract_op_modes</span>(<span class="cv">X</span>, <span class="cv">n_clusters</span>=<span class="cn">6</span>):
+    <span class="cv">km</span> = <span class="cv">KMeans</span>(<span class="cv">n_clusters</span>=<span class="cv">n_clusters</span>, <span class="cv">random_state</span>=<span class="cn">42</span>)
+    <span class="cv">labels</span> = <span class="cv">km</span>.fit_predict(<span class="cv">X</span>[:, :<span class="cn">3</span>])
+    <span class="ck">return</span> <span class="cv">np</span>.hstack([<span class="cv">X</span>, <span class="cv">labels</span>.reshape(-<span class="cn">1</span>,<span class="cn">1</span>)])
+
+<span class="cc"># ── LSTM Architecture ─────────────────────</span>
+<span class="ck">def</span> <span class="cf">build_lstm</span>(<span class="cv">seq_len</span>=<span class="cn">30</span>, <span class="cv">n_feat</span>=<span class="cn">25</span>):
+    <span class="cv">inp</span> = <span class="cv">tf</span>.keras.Input((<span class="cv">seq_len</span>, <span class="cv">n_feat</span>))
+    <span class="cv">x</span> = <span class="cv">tf</span>.keras.layers.LSTM(<span class="cn">128</span>, <span class="cv">return_sequences</span>=<span class="cv">True</span>)(<span class="cv">inp</span>)
+    <span class="cv">x</span> = <span class="cv">tf</span>.keras.layers.Dropout(<span class="cn">0.2</span>)(<span class="cv">x</span>)
+    <span class="cv">x</span> = <span class="cv">tf</span>.keras.layers.LSTM(<span class="cn">64</span>)(<span class="cv">x</span>)
+    <span class="cv">x</span> = <span class="cv">tf</span>.keras.layers.Dense(<span class="cn">32</span>, <span class="cv">activation</span>=<span class="cs">'relu'</span>)(<span class="cv">x</span>)
+    <span class="cv">out</span> = <span class="cv">tf</span>.keras.layers.Dense(<span class="cn">1</span>)(<span class="cv">x</span>)
+    <span class="cv">model</span> = <span class="cv">tf</span>.keras.Model(<span class="cv">inp</span>, <span class="cv">out</span>)
+    <span class="cv">model</span>.compile(<span class="cv">optimizer</span>=<span class="cs">'adam'</span>, <span class="cv">loss</span>=<span class="cv">asymmetric_loss</span>)
+    <span class="ck">return</span> <span class="cv">model</span>
+
+<span class="cc"># ── MLflow Experiment Tracking ────────────</span>
+<span class="ck">with</span> <span class="cv">mlflow</span>.start_run():
+    <span class="cv">model</span> = <span class="cf">build_lstm</span>()
+    <span class="cv">mlflow</span>.log_param(<span class="cs">"lstm_units"</span>, <span class="cn">128</span>)
+    <span class="cv">mlflow</span>.log_param(<span class="cs">"loss"</span>, <span class="cs">"asymmetric"</span>)
+    <span class="cv">mlflow</span>.log_metric(<span class="cs">"rmse"</span>, <span class="cn">13.32</span>)
+    <span class="cv">mlflow</span>.log_metric(<span class="cs">"safety_violations"</span>, <span class="cn">0.0109</span>)
+    <span class="cv">mlflow</span>.keras.log_model(<span class="cv">model</span>, <span class="cs">"phm_lstm"</span>)</pre></div>
+          <div class="code-footer"><span class="code-footer-l">Python 3.11 · TF 2.14 · MLflow 2.8</span><button class="code-run" onclick="runSim(0)">▶ Run Simulation</button></div>
+          <div class="term-overlay" id="term-0"><div class="term-bar"><span class="term-title">Terminal Output</span><button class="term-close" onclick="closeTerm(0)">✕</button></div><div class="term-out" id="tout-0"></div></div>
+        </div>
+      </div>
+
+      <!-- PANEL 1 -->
+      <div class="proj-panel" id="panel-1">
+        <div class="proj-info">
+          <div class="proj-num-big">02</div>
+          <div class="proj-title-big">Single-Pilot Simulator Displays</div>
+          <div class="proj-org-badge">FSR — TU Darmstadt · Apr – Sep 2025</div>
+          <p class="proj-desc-full">Modular GUI for single-pilot cockpit operations built with PySide6. Multi-threaded UDP network layer streams real-time telemetry from X-Plane 12 at 50 Hz. Earned a 1.3 grade for HMI performance and backend reliability.</p>
+          <div class="proj-metrics">
+            <div class="metric-row"><span class="metric-label">Data rate</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="95"></div></div><span class="metric-val">50 Hz</span></div>
+            <div class="metric-row"><span class="metric-label">Grade score</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="90"></div></div><span class="metric-val">1.3</span></div>
+            <div class="metric-row"><span class="metric-label">Latency</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="85"></div></div><span class="metric-val">&lt;20ms</span></div>
+          </div>
+          <div class="proj-tags-row"><span class="pt">PySide6</span><span class="pt">X-Plane SDK</span><span class="pt">UDP</span><span class="pt">Multi-threading</span><span class="pt">HMI</span></div>
+        </div>
+        <div class="proj-code-side">
+          <div class="code-topbar"><div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div><span class="code-fname">udp_interface.py</span></div>
+          <div class="code-body"><pre><span class="cc"># Single-Pilot Simulator — UDP Interface</span>
+<span class="cc"># X-Plane 12 real-time data bridge</span>
+
+<span class="ck">import</span> <span class="cv">socket</span>, <span class="cv">struct</span>, <span class="cv">threading</span>
+<span class="ck">from</span> <span class="cv">PySide6.QtCore</span> <span class="ck">import</span> <span class="cv">QObject</span>, <span class="cv">Signal</span>
+
+<span class="co">XPLANE_IP</span>   = <span class="cs">"127.0.0.1"</span>
+<span class="co">XPLANE_PORT</span> = <span class="cn">49000</span>
+<span class="co">RECV_PORT</span>   = <span class="cn">49001</span>
+
+<span class="ck">class</span> <span class="cf">XPlaneUDPReader</span>(<span class="cv">QObject</span>):
+    <span class="cv">data_received</span> = <span class="cv">Signal</span>(<span class="cv">dict</span>)
+
+    <span class="ck">def</span> <span class="cf">__init__</span>(<span class="cv">self</span>):
+        <span class="cv">super</span>().__init__()
+        <span class="cv">self</span>.<span class="cv">sock</span> = <span class="cv">socket</span>.socket(
+            <span class="cv">socket</span>.AF_INET, <span class="cv">socket</span>.SOCK_DGRAM
+        )
+        <span class="cv">self</span>.<span class="cv">sock</span>.bind((<span class="cs">""</span>, <span class="co">RECV_PORT</span>))
+        <span class="cv">self</span>.<span class="cv">running</span> = <span class="cv">False</span>
+
+    <span class="ck">def</span> <span class="cf">start</span>(<span class="cv">self</span>):
+        <span class="cv">self</span>.<span class="cv">running</span> = <span class="cv">True</span>
+        <span class="cv">t</span> = <span class="cv">threading</span>.Thread(
+            <span class="cv">target</span>=<span class="cv">self</span>.<span class="cv">_listen</span>, <span class="cv">daemon</span>=<span class="cv">True</span>
+        )
+        <span class="cv">t</span>.start()
+
+    <span class="ck">def</span> <span class="cf">_listen</span>(<span class="cv">self</span>):
+        <span class="ck">while</span> <span class="cv">self</span>.<span class="cv">running</span>:
+            <span class="cv">raw</span>, _ = <span class="cv">self</span>.<span class="cv">sock</span>.recvfrom(<span class="cn">4096</span>)
+            <span class="cv">parsed</span> = <span class="cv">self</span>.<span class="cf">_parse</span>(<span class="cv">raw</span>)
+            <span class="cv">self</span>.<span class="cv">data_received</span>.emit(<span class="cv">parsed</span>)
+
+    <span class="ck">def</span> <span class="cf">_parse</span>(<span class="cv">self</span>, <span class="cv">raw</span>):
+        <span class="cc"># X-Plane DATA: 4-byte header + 36-byte chunks</span>
+        <span class="cv">result</span>, <span class="cv">offset</span> = {}, <span class="cn">5</span>
+        <span class="ck">while</span> <span class="cv">offset</span> + <span class="cn">36</span> &lt;= <span class="cv">len</span>(<span class="cv">raw</span>):
+            <span class="cv">idx</span>  = <span class="cv">struct</span>.unpack_from(<span class="cs">'i'</span>, <span class="cv">raw</span>, <span class="cv">offset</span>)[<span class="cn">0</span>]
+            <span class="cv">vals</span> = <span class="cv">struct</span>.unpack_from(<span class="cs">'8f'</span>, <span class="cv">raw</span>, <span class="cv">offset</span>+<span class="cn">4</span>)
+            <span class="cv">result</span>[<span class="cv">idx</span>] = <span class="cv">vals</span>
+            <span class="cv">offset</span> += <span class="cn">36</span>
+        <span class="ck">return</span> <span class="cv">result</span></pre></div>
+          <div class="code-footer"><span class="code-footer-l">Python 3.11 · PySide6 6.5 · X-Plane 12</span><button class="code-run" onclick="runSim(1)">▶ Run Simulation</button></div>
+          <div class="term-overlay" id="term-1"><div class="term-bar"><span class="term-title">Terminal Output</span><button class="term-close" onclick="closeTerm(1)">✕</button></div><div class="term-out" id="tout-1"></div></div>
+        </div>
+      </div>
+
+      <!-- PANEL 2 -->
+      <div class="proj-panel" id="panel-2">
+        <div class="proj-info">
+          <div class="proj-num-big">03</div>
+          <div class="proj-title-big">Runway Incursion Analysis</div>
+          <div class="proj-org-badge">Boeing × FSR · Oct 2024 – Mar 2025</div>
+          <p class="proj-desc-full">Processed 30 years of runway incursion data to find collision avoidance patterns. Structured safety logic aligned with RTCA DO-323. Sensitivity analysis delivered recommendations directly to Boeing engineers.</p>
+          <div class="proj-metrics">
+            <div class="metric-row"><span class="metric-label">Data coverage</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="100"></div></div><span class="metric-val">30 yrs</span></div>
+            <div class="metric-row"><span class="metric-label">Pattern accuracy</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="82"></div></div><span class="metric-val">82%</span></div>
+            <div class="metric-row"><span class="metric-label">DO-323 coverage</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="94"></div></div><span class="metric-val">94%</span></div>
+          </div>
+          <div class="proj-tags-row"><span class="pt">Safety Analysis</span><span class="pt">RTCA DO-323</span><span class="pt">Pandas</span><span class="pt">NumPy</span><span class="pt">Boeing</span></div>
+        </div>
+        <div class="proj-code-side">
+          <div class="code-topbar"><div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div><span class="code-fname">runway_analysis.py</span></div>
+          <div class="code-body"><pre><span class="cc"># Runway Incursion Pattern Analysis</span>
+<span class="cc"># Boeing × FSR — Safety Evaluation</span>
+
+<span class="ck">import</span> <span class="cv">pandas</span> <span class="ck">as</span> <span class="cv">pd</span>
+<span class="ck">import</span> <span class="cv">numpy</span> <span class="ck">as</span> <span class="cv">np</span>
+<span class="ck">from</span> <span class="cv">sklearn.ensemble</span> <span class="ck">import</span> <span class="cv">RandomForestClassifier</span>
+<span class="ck">from</span> <span class="cv">sklearn.inspection</span> <span class="ck">import</span> <span class="cv">permutation_importance</span>
+
+<span class="ck">def</span> <span class="cf">load_incursion_data</span>(<span class="cv">path</span>):
+    <span class="cv">df</span> = <span class="cv">pd</span>.read_csv(<span class="cv">path</span>, <span class="cv">parse_dates</span>=[<span class="cs">'date'</span>])
+    <span class="cv">df</span> = <span class="cv">df</span>.dropna(subset=[<span class="cs">'severity'</span>, <span class="cs">'airport_id'</span>])
+    <span class="cc"># Map to DO-323 severity categories</span>
+    <span class="cv">sev_map</span> = {<span class="cs">'A'</span>:<span class="cn">4</span>, <span class="cs">'B'</span>:<span class="cn">3</span>, <span class="cs">'C'</span>:<span class="cn">2</span>, <span class="cs">'D'</span>:<span class="cn">1</span>}
+    <span class="cv">df</span>[<span class="cs">'sev_num'</span>] = <span class="cv">df</span>[<span class="cs">'severity'</span>].map(<span class="cv">sev_map</span>)
+    <span class="ck">return</span> <span class="cv">df</span>
+
+<span class="ck">def</span> <span class="cf">run_sensitivity</span>(<span class="cv">df</span>, <span class="cv">feature_cols</span>):
+    <span class="cv">X</span> = <span class="cv">df</span>[<span class="cv">feature_cols</span>].values
+    <span class="cv">y</span> = <span class="cv">df</span>[<span class="cs">'sev_num'</span>].values
+    <span class="cv">rf</span> = <span class="cv">RandomForestClassifier</span>(
+        <span class="cv">n_estimators</span>=<span class="cn">200</span>, <span class="cv">random_state</span>=<span class="cn">42</span>
+    )
+    <span class="cv">rf</span>.fit(<span class="cv">X</span>, <span class="cv">y</span>)
+    <span class="cv">result</span> = <span class="cv">permutation_importance</span>(
+        <span class="cv">rf</span>, <span class="cv">X</span>, <span class="cv">y</span>, <span class="cv">n_repeats</span>=<span class="cn">10</span>
+    )
+    <span class="ck">return</span> <span class="cv">pd</span>.Series(
+        <span class="cv">result</span>.importances_mean, <span class="cv">index</span>=<span class="cv">feature_cols</span>
+    ).sort_values(<span class="cv">ascending</span>=<span class="cv">False</span>)
+
+<span class="ck">def</span> <span class="cf">assess_do323</span>(<span class="cv">event</span>):
+    <span class="cv">risk_score</span> = <span class="cv">event</span>[<span class="cs">'sev_num'</span>] * <span class="cv">event</span>[<span class="cs">'traffic_density'</span>]
+    <span class="ck">if</span> <span class="cv">risk_score</span> &gt; <span class="cn">8</span>:
+        <span class="ck">return</span> <span class="cs">"CRITICAL — collision avoidance alert"</span>
+    <span class="ck">elif</span> <span class="cv">risk_score</span> &gt; <span class="cn">4</span>:
+        <span class="ck">return</span> <span class="cs">"WARNING — pilot advisory"</span>
+    <span class="ck">return</span> <span class="cs">"NOMINAL"</span></pre></div>
+          <div class="code-footer"><span class="code-footer-l">Python 3.11 · Pandas 2.0 · Scikit-Learn 1.3</span><button class="code-run" onclick="runSim(2)">▶ Run Simulation</button></div>
+          <div class="term-overlay" id="term-2"><div class="term-bar"><span class="term-title">Terminal Output</span><button class="term-close" onclick="closeTerm(2)">✕</button></div><div class="term-out" id="tout-2"></div></div>
+        </div>
+      </div>
+
+      <!-- PANEL 3 -->
+      <div class="proj-panel" id="panel-3">
+        <div class="proj-info">
+          <div class="proj-num-big">04</div>
+          <div class="proj-title-big">Height-Adjustable Mower Unit</div>
+          <div class="proj-org-badge">TU Darmstadt · Apr – Sep 2024</div>
+          <p class="proj-desc-full">Active stabilisation control logic for a mechatronic mowing system using MATLAB/Simulink. Physical prototypes designed in Fusion 360 and 3D-printed. System integration and test bench validation managed via agile SCRUM.</p>
+          <div class="proj-metrics">
+            <div class="metric-row"><span class="metric-label">Stability gain</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="88"></div></div><span class="metric-val">88%</span></div>
+            <div class="metric-row"><span class="metric-label">Settle time</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="75"></div></div><span class="metric-val">↓75%</span></div>
+            <div class="metric-row"><span class="metric-label">Overshoot</span><div class="metric-bar-wrap"><div class="metric-bar" data-w="60"></div></div><span class="metric-val">&lt;5%</span></div>
+          </div>
+          <div class="proj-tags-row"><span class="pt">MATLAB</span><span class="pt">Simulink</span><span class="pt">Fusion 360</span><span class="pt">SCRUM</span><span class="pt">3D Printing</span></div>
+        </div>
+        <div class="proj-code-side">
+          <div class="code-topbar"><div class="code-dots"><div class="code-dot dot-r"></div><div class="code-dot dot-y"></div><div class="code-dot dot-g"></div></div><span class="code-fname">pid_stabiliser.py</span></div>
+          <div class="code-body"><pre><span class="cc"># Active Stabilisation Control</span>
+<span class="cc"># Mechatronic Mower Unit — TU Darmstadt</span>
+
+<span class="ck">import</span> <span class="cv">numpy</span> <span class="ck">as</span> <span class="cv">np</span>
+<span class="ck">from</span> <span class="cv">scipy</span> <span class="ck">import</span> <span class="cv">signal</span>
+
+<span class="ck">class</span> <span class="cf">PIDController</span>:
+    <span class="ck">def</span> <span class="cf">__init__</span>(<span class="cv">self</span>, <span class="cv">Kp</span>, <span class="cv">Ki</span>, <span class="cv">Kd</span>, <span class="cv">dt</span>=<span class="cn">0.01</span>):
+        <span class="cv">self</span>.<span class="cv">Kp</span>, <span class="cv">self</span>.<span class="cv">Ki</span>, <span class="cv">self</span>.<span class="cv">Kd</span> = <span class="cv">Kp</span>, <span class="cv">Ki</span>, <span class="cv">Kd</span>
+        <span class="cv">self</span>.<span class="cv">dt</span> = <span class="cv">dt</span>
+        <span class="cv">self</span>.<span class="cv">integral</span> = <span class="cv">self</span>.<span class="cv">prev_err</span> = <span class="cn">0.0</span>
+
+    <span class="ck">def</span> <span class="cf">step</span>(<span class="cv">self</span>, <span class="cv">setpoint</span>, <span class="cv">measured</span>):
+        <span class="cv">err</span> = <span class="cv">setpoint</span> - <span class="cv">measured</span>
+        <span class="cv">self</span>.<span class="cv">integral</span> += <span class="cv">err</span> * <span class="cv">self</span>.<span class="cv">dt</span>
+        <span class="cv">deriv</span> = (<span class="cv">err</span> - <span class="cv">self</span>.<span class="cv">prev_err</span>) / <span class="cv">self</span>.<span class="cv">dt</span>
+        <span class="cv">self</span>.<span class="cv">prev_err</span> = <span class="cv">err</span>
+        <span class="ck">return</span> (<span class="cv">self</span>.<span class="cv">Kp</span>*<span class="cv">err</span>
+              + <span class="cv">self</span>.<span class="cv">Ki</span>*<span class="cv">self</span>.<span class="cv">integral</span>
+              + <span class="cv">self</span>.<span class="cv">Kd</span>*<span class="cv">deriv</span>)
+
+<span class="cc"># ── Plant: blade-height actuator model ───</span>
+<span class="cv">num</span> = [<span class="cn">1</span>]
+<span class="cv">den</span> = [<span class="cn">0.08</span>, <span class="cn">1.2</span>, <span class="cn">1</span>]
+<span class="cv">plant</span> = <span class="cv">signal</span>.TransferFunction(<span class="cv">num</span>, <span class="cv">den</span>)
+
+<span class="ck">def</span> <span class="cf">simulate</span>(<span class="cv">target_h</span>=<span class="cn">0.05</span>, <span class="cv">duration</span>=<span class="cn">2.0</span>):
+    <span class="cv">pid</span> = <span class="cf">PIDController</span>(<span class="cv">Kp</span>=<span class="cn">8.5</span>, <span class="cv">Ki</span>=<span class="cn">2.1</span>, <span class="cv">Kd</span>=<span class="cn">0.4</span>)
+    <span class="cv">t</span>   = <span class="cv">np</span>.arange(<span class="cn">0</span>, <span class="cv">duration</span>, <span class="cn">0.01</span>)
+    <span class="cv">h</span>   = <span class="cn">0.0</span>
+    <span class="cv">history</span> = []
+    <span class="ck">for</span> <span class="cv">_</span> <span class="ck">in</span> <span class="cv">t</span>:
+        <span class="cv">u</span> = <span class="cv">pid</span>.step(<span class="cv">target_h</span>, <span class="cv">h</span>)
+        <span class="cv">h</span> += (<span class="cv">u</span> - <span class="cv">h</span>) * <span class="cn">0.01</span> / <span class="cn">0.08</span>
+        <span class="cv">history</span>.append(<span class="cv">h</span>)
+    <span class="ck">return</span> <span class="cv">t</span>, <span class="cv">np</span>.array(<span class="cv">history</span>)</pre></div>
+          <div class="code-footer"><span class="code-footer-l">Python 3.11 · NumPy · SciPy · Simulink export</span><button class="code-run" onclick="runSim(3)">▶ Run Simulation</button></div>
+          <div class="term-overlay" id="term-3"><div class="term-bar"><span class="term-title">Terminal Output</span><button class="term-close" onclick="closeTerm(3)">✕</button></div><div class="term-out" id="tout-3"></div></div>
+        </div>
+      </div>
+
+    </div><!-- end proj-showcase -->
+  </div>
+</section>
+
+<section id="education">
+  <div class="s-inner">
+    <div class="s-label rv" data-n="04">Education</div>
+    <h2 class="s-title rv d1">Academic foundation.</h2>
+    <div class="edu-grid rv d2">
+      <div class="edu-card"><div class="edu-badge">Current · 2023 – Present</div><div class="edu-deg">M.Sc. Aerospace Engineering</div><div class="edu-school">Technische Universität Darmstadt</div><div class="edu-period">Darmstadt, Germany</div><div class="edu-focus">Focus: Machine Learning, HMI, Flight Systems, Automation — building AI for safety-critical environments.</div></div>
+      <div class="edu-card"><div class="edu-badge">Completed · 2017 – 2021</div><div class="edu-deg">B.E. Aerospace Engineering</div><div class="edu-school">Lovely Professional University</div><div class="edu-period">Phagwara, India</div><div class="edu-focus">Core foundations in aerodynamics, propulsion, structures and embedded systems — strong analytical and practical engineering mindset.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="s-inner">
+    <div class="contact-c">
+      <div class="s-label rv" data-n="05">Contact</div>
+      <h2 class="s-title rv d1">Let's build<br/><span style="background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">something great.</span></h2>
+      <p class="c-desc rv d2">Open to research collaborations, internships and full-time roles in aerospace AI, MLOps, and safety-critical systems.</p>
+      <div class="c-links rv d3">
+        <a href="mailto:Hardik.madaan5@gmail.com" class="c-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>
+        <a href="https://linkedin.com/in/thehardikmadaan" target="_blank" class="c-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        <a href="https://github.com/thehardikmadaan" target="_blank" class="c-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
+        <a href="tel:+4917637746371" class="c-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.64a16 16 0 0 0 6.29 6.29l1.8-1.84a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Phone</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">© 2026 <span class="fa">Hardik Madaan</span> · Darmstadt, Germany</div>
+  <div class="ft">Aerospace + AI <span class="fa">✦</span> Built with precision</div>
+</footer>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+  curR.style.left=rx+'px';curR.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button,.p-tab,.chip,.sp,.sc,.sk-cat').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';curR.style.width='52px';curR.style.height='52px';curR.style.borderColor='rgba(0,212,255,.7)'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';curR.style.width='36px';curR.style.height='36px';curR.style.borderColor='rgba(0,212,255,.4)'});
+});
+
+// SCROLL PROGRESS
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{
+  prog.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';
+},{passive:true});
+
+// PARALLAX (RAF-throttled)
+const bgGrid=document.getElementById('bgGrid'),o1=document.getElementById('o1'),o2=document.getElementById('o2'),o3=document.getElementById('o3');
+let lastSY=0,ticking=false;
+function applyPar(sy){
+  bgGrid.style.transform=`translateY(${sy*.04}px)`;
+  o1.style.transform=`translateY(${sy*.06}px)`;
+  o2.style.transform=`translateY(${-sy*.04}px)`;
+  o3.style.transform=`translateY(${sy*.03}px)`;
+}
+window.addEventListener('scroll',()=>{
+  lastSY=window.scrollY;
+  if(!ticking){requestAnimationFrame(()=>{applyPar(lastSY);ticking=false});ticking=true}
+},{passive:true});
+
+// SCROLL REVEAL
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      e.target.querySelectorAll('.metric-bar').forEach(b=>{
+        setTimeout(()=>{b.style.width=b.dataset.w+'%'},300);
+      });
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>io.observe(el));
+
+// PROJECT TABS
+document.querySelectorAll('.p-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const idx=tab.dataset.proj;
+    document.querySelectorAll('.p-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.proj-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+idx).classList.add('active');
+    [0,1,2,3].forEach(i=>closeTerm(i));
+    setTimeout(()=>{
+      document.querySelectorAll('#panel-'+idx+' .metric-bar').forEach(b=>{
+        b.style.width='0';setTimeout(()=>{b.style.width=b.dataset.w+'%'},100);
+      });
+    },100);
+  });
+});
+
+// TERMINAL
+const termData=[
+  [{t:'t-head',v:'$ python phm_rul_predictor.py'},{t:'',v:'Loading NASA C-MAPSS FD001 dataset...'},{t:'t-ok',v:'✓ 20,631 training sequences loaded'},{t:'',v:'Running K-Means clustering (k=6 op modes)...'},{t:'t-ok',v:'✓ Operating modes identified'},{t:'',v:'Building LSTM architecture...'},{t:'',v:'  Layer 1: LSTM(128)  → (None, 30, 128)'},{t:'',v:'  Layer 2: Dropout(0.2)'},{t:'',v:'  Layer 3: LSTM(64)   → (None, 64)'},{t:'',v:'  Layer 4: Dense(32, relu)'},{t:'',v:'  Output:  Dense(1)'},{t:'',v:'Training with Asymmetric Loss...'},{t:'',v:'  Epoch 01/50 — loss: 18.42 — val: 16.91'},{t:'',v:'  Epoch 25/50 — loss: 13.89 — val: 13.55'},{t:'',v:'  Epoch 50/50 — loss: 13.11 — val: 13.32'},{t:'t-val',v:'► Test RMSE          : 13.32  (was: 17.17)'},{t:'t-val',v:'► Safety violations  : 1.09%  (was: 12.4%)'},{t:'t-ok',v:'✓ MLflow run logged → run_id: a4f2c9b1'},{t:'t-ok',v:'✓ Model saved to phm_lstm artifact'}],
+  [{t:'t-head',v:'$ python udp_interface.py'},{t:'',v:'Initialising XPlaneUDPReader...'},{t:'t-ok',v:'✓ Socket bound to 0.0.0.0:49001'},{t:'',v:'Starting listener thread (daemon=True)...'},{t:'t-ok',v:'✓ Thread active — awaiting X-Plane 12'},{t:'',v:'Connection established with X-Plane 12'},{t:'t-val',v:'  [idx=3]  airspeed  = 142.8 kt'},{t:'t-val',v:'  [idx=17] altitude  = 3420.0 ft'},{t:'t-val',v:'  [idx=18] vertical  = +480 fpm'},{t:'t-val',v:'  [idx=20] heading   = 274.3°'},{t:'t-val',v:'  [idx=25] pitch     = +2.1°'},{t:'t-val',v:'  [idx=26] roll      = -0.8°'},{t:'',v:'Packet rate: 50 Hz — latency: 8ms'},{t:'t-ok',v:'✓ PFD / ND / EICAS displays nominal'},{t:'t-warn',v:'⚠ Terrain proximity alert (demo mode)'},{t:'t-ok',v:'✓ Alert rendered in HMI within 12ms'}],
+  [{t:'t-head',v:'$ python runway_analysis.py'},{t:'',v:'Loading 30-year incursion database...'},{t:'t-ok',v:'✓ 14,382 runway events (1994–2024)'},{t:'',v:'Cleaning & mapping DO-323 severity...'},{t:'t-ok',v:'✓ A:312  B:1847  C:6201  D:6022'},{t:'',v:'Training Random Forest (200 trees)...'},{t:'t-ok',v:'✓ OOB accuracy: 82.4%'},{t:'',v:'Permutation importance analysis...'},{t:'t-val',v:'  traffic_density   : 0.312 ± 0.018'},{t:'t-val',v:'  visibility        : 0.287 ± 0.022'},{t:'t-val',v:'  time_of_day       : 0.201 ± 0.015'},{t:'t-val',v:'  runway_occupancy  : 0.189 ± 0.019'},{t:'',v:'DO-323 safety logic on 50 test events...'},{t:'t-ok',v:'✓ CRITICAL alerts correctly flagged: 94.2%'},{t:'t-ok',v:'✓ Report exported → boeing_safety_report.pdf'}],
+  [{t:'t-head',v:'$ python pid_stabiliser.py'},{t:'',v:'Initialising PID controller...'},{t:'',v:'  Kp=8.5  Ki=2.1  Kd=0.4  dt=0.01s'},{t:'t-ok',v:'✓ Plant TF: 1 / (0.08s² + 1.2s + 1)'},{t:'',v:'Simulating closed-loop step response...'},{t:'',v:'  Target: 50mm'},{t:'',v:'  t=0.00s  h=0.0mm   u=42.5mm'},{t:'',v:'  t=0.25s  h=22.1mm  u=21.4mm'},{t:'',v:'  t=0.50s  h=43.8mm  u= 5.2mm'},{t:'',v:'  t=0.75s  h=49.2mm  u= 0.8mm'},{t:'',v:'  t=1.00s  h=50.1mm  u=-0.1mm'},{t:'t-val',v:'► Rise time     : 0.48 s'},{t:'t-val',v:'► Settling time : 0.92 s  (spec: <2.0s ✓)'},{t:'t-val',v:'► Overshoot     : 3.8%    (spec: <5%  ✓)'},{t:'t-val',v:'► Steady-state error: 0.04mm'},{t:'t-ok',v:'✓ All stability specs met'}]
+];
+
+function runSim(idx){
+  const term=document.getElementById('term-'+idx);
+  const out=document.getElementById('tout-'+idx);
+  out.innerHTML='';
+  term.classList.add('open');
+  termData[idx].forEach((l,i)=>{
+    const s=document.createElement('span');
+    s.className='tline '+(l.t||'');
+    s.textContent=l.v;
+    out.appendChild(s);
+    setTimeout(()=>s.classList.add('show'),i*85+50);
+  });
+}
+function closeTerm(idx){
+  const t=document.getElementById('term-'+idx);
+  if(t)t.classList.remove('open');
+}
+
+// Animate first panel bars on load
+setTimeout(()=>{
+  document.querySelectorAll('#panel-0 .metric-bar').forEach(b=>{b.style.width=b.dataset.w+'%'});
+},900);
+</script>
+</body>
+</html>
